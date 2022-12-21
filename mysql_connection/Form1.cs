@@ -11,21 +11,12 @@ namespace mysql_connection
         {
             InitializeComponent();
         }
-        //MySqlConnection baglanti = new MySqlConnection("Server=localhost;Database=uyeler;Uid=root;Pwd='';");
         MySqlConnection baglanti = new MySqlConnection("Server=serverip; Port=port; Uid=your-username; Pwd=your-password; Database=db_name");
         MySqlCommand cmd = new MySqlCommand();
         MySqlDataAdapter da = new MySqlDataAdapter();
         DataTable dt;
         private void uyelerigetir()
         {
-            //baglanti.Open();
-            //string komut = "SELECT * FROM uyebilgileri";
-            //da = new MySqlDataAdapter(komut, baglanti);
-            //DataTable dt = new DataTable();
-            //da.Fill(dt);
-            //dataGridView1.DataSource = dt;
-            //baglanti.Close();
-
             dt = new DataTable();
             baglanti.Open();
             da = new MySqlDataAdapter("SELECT * FROM `uyebilgileri` ", baglanti);
