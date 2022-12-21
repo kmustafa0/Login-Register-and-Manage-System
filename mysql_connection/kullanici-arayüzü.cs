@@ -17,8 +17,7 @@ namespace mysql_connection
         {
             InitializeComponent();
         }
-        //MySqlConnection baglanti = new MySqlConnection("Server=localhost;Database=uyeler;Uid=root;Pwd='';");
-        MySqlConnection baglanti = new MySqlConnection("Server=134.209.206.170; Port=3306; Uid=mustafa; Pwd=msT1650k; Database=uyeler");
+        MySqlConnection baglanti = new MySqlConnection("Server=serverip; Port=port; Uid=your-username; Pwd=your-password; Database=db_name");
         MySqlDataAdapter da = new MySqlDataAdapter();
         MySqlCommand cmd = new MySqlCommand();
         MySqlDataReader dr;
@@ -42,7 +41,6 @@ namespace mysql_connection
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string sql = "UPDATE `uyebilgileri` SET id=@id, uyeAd=@ad, uyeSoyad=@soyad, uyeTelefon=@telefon, uyeEmail=@email, uyeHesapTuru=@hesapturu, uyeKullaniciAdi=@kadi, uyeSifre=@sifre, uyeBitisTarihi=@bitistarihi, uyeKayitTarihi=@kayittarihi WHERE id=@id";
             string sql = "UPDATE `uyebilgileri` SET uyeTelefon=@telefon, uyeEmail=@email, uyeKullaniciAdi=@kadi, uyeSifre=@sifre WHERE id=@id";
             cmd = new MySqlCommand(sql,baglanti);
             cmd.Parameters.AddWithValue("@id",txtid.Text);
