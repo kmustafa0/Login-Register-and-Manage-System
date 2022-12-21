@@ -18,9 +18,7 @@ namespace mysql_connection
         {
             InitializeComponent();
         }
-
-        //MySqlConnection baglanti = new MySqlConnection("Server=localhost;Database=uyeler;Uid=root;Pwd='';");
-        MySqlConnection baglanti = new MySqlConnection("Server=134.209.206.170; Port=3306; Uid=mustafa; Pwd=msT1650k; Database=uyeler");
+        MySqlConnection baglanti = new MySqlConnection("Server=serverip; Port=port; Uid=your-username; Pwd=your-password; Database=db_name");
         MySqlCommand cmd = new MySqlCommand();
 
         private void textboxtemizle()
