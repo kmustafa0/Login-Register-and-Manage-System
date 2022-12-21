@@ -67,12 +67,6 @@ namespace mysql_connection
         {
             try
             {
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Hata");
-            }
             if (txtAd.Text == "" || txtSoyad.Text == "" || txtTelefon.Text == "" || txtMail.Text == "" || txtkadi.Text == "" || txtSifre.Text == "" || dateTimePickerBitis.Value != DateTime.Now.Date)
             {
                 MessageBox.Show("Boş alan bırakmadan doldurun.", "Boş Bırakılamaz", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -96,6 +90,11 @@ namespace mysql_connection
             uyelerigetir();
             temizle();
             MessageBox.Show("Kayıt Başarılı Bir Şekilde Eklendi", "Kayıt Eklendi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hata");
             }
         }
 
