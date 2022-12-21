@@ -18,14 +18,6 @@ namespace mysql_connection
         DataTable dt;
         private void uyelerigetir()
         {
-            //baglanti.Open();
-            //string komut = "SELECT * FROM uyebilgileri";
-            //da = new MySqlDataAdapter(komut, baglanti);
-            //DataTable dt = new DataTable();
-            //da.Fill(dt);
-            //dataGridView1.DataSource = dt;
-            //baglanti.Close();
-
             dt = new DataTable();
             baglanti.Open();
             da = new MySqlDataAdapter("SELECT * FROM `uyebilgileri` ", baglanti);
@@ -67,30 +59,30 @@ namespace mysql_connection
         {
             try
             {
-            if (txtAd.Text == "" || txtSoyad.Text == "" || txtTelefon.Text == "" || txtMail.Text == "" || txtkadi.Text == "" || txtSifre.Text == "" || dateTimePickerBitis.Value != DateTime.Now.Date)
-            {
-                MessageBox.Show("Boş alan bırakmadan doldurun.", "Boş Bırakılamaz", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                string sql = "insert into `uyebilgileri`        (uyeAd,uyeSoyad,uyeTelefon,uyeEmail,uyeHesapTuru,uyeKullaniciAdi,uyeSifre,uyeBitisTarihi,uyeKayitTarihi) values(@ad,@soyad,@telefon,@mail,@hesapturu,@kullaniciadi,@sifre,@bitistarihi,@kayittarihi);";
-            cmd = new MySqlCommand(sql, baglanti);
-            cmd.Parameters.AddWithValue("@ad", txtAd.Text);
-            cmd.Parameters.AddWithValue("@soyad", txtSoyad.Text);
-            cmd.Parameters.AddWithValue("@telefon", txtTelefon.Text);
-            cmd.Parameters.AddWithValue("@mail", txtMail.Text);
-            cmd.Parameters.AddWithValue("@hesapturu", cboxHesapTuru.Text);
-            cmd.Parameters.AddWithValue("@kullaniciadi", txtkadi.Text);
-            cmd.Parameters.AddWithValue("@sifre", txtSifre.Text);
-            cmd.Parameters.AddWithValue("@bitistarihi", dateTimePickerBitis.Value);
-            cmd.Parameters.AddWithValue("@kayittarihi", dateTimePickerKayit.Value);
-            baglanti.Open();
-            cmd.ExecuteNonQuery();
-            baglanti.Close();
-            uyelerigetir();
-            temizle();
-            MessageBox.Show("Kayıt Başarılı Bir Şekilde Eklendi", "Kayıt Eklendi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (txtAd.Text == "" || txtSoyad.Text == "" || txtTelefon.Text == "" || txtMail.Text == "" || txtkadi.Text == "" || txtSifre.Text == "" || dateTimePickerBitis.Value != DateTime.Now.Date)
+                {
+                    MessageBox.Show("Boş alan bırakmadan doldurun.", "Boş Bırakılamaz", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    string sql = "insert into `uyebilgileri`        (uyeAd,uyeSoyad,uyeTelefon,uyeEmail,uyeHesapTuru,uyeKullaniciAdi,uyeSifre,uyeBitisTarihi,uyeKayitTarihi) values(@ad,@soyad,@telefon,@mail,@hesapturu,@kullaniciadi,@sifre,@bitistarihi,@kayittarihi);";
+                cmd = new MySqlCommand(sql, baglanti);
+                cmd.Parameters.AddWithValue("@ad", txtAd.Text);
+                cmd.Parameters.AddWithValue("@soyad", txtSoyad.Text);
+                cmd.Parameters.AddWithValue("@telefon", txtTelefon.Text);
+                cmd.Parameters.AddWithValue("@mail", txtMail.Text);
+                cmd.Parameters.AddWithValue("@hesapturu", cboxHesapTuru.Text);
+                cmd.Parameters.AddWithValue("@kullaniciadi", txtkadi.Text);
+                cmd.Parameters.AddWithValue("@sifre", txtSifre.Text);
+                cmd.Parameters.AddWithValue("@bitistarihi", dateTimePickerBitis.Value);
+                cmd.Parameters.AddWithValue("@kayittarihi", dateTimePickerKayit.Value);
+                baglanti.Open();
+                cmd.ExecuteNonQuery();
+                baglanti.Close();
+                uyelerigetir();
+                temizle();
+                MessageBox.Show("Kayıt Başarılı Bir Şekilde Eklendi", "Kayıt Eklendi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -102,26 +94,25 @@ namespace mysql_connection
         {
             try
             {
-            if(txtID.Text == "")
-            {
-                MessageBox.Show("Kullanıcı seçilmeden silme işlemi yapılamaz.", "Kullanıcı Seçilmemiş",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-            else
-            {
-
-            DialogResult onay = MessageBox.Show($@"ID'si {this.txtID.Text} olan  {this.txtAd.Text} {this.txtSoyad.Text} kalıcı olarak silinecek. Bu işlemi yapmak istediğine emin misin?", "Kalıcı Olarak Silinecek", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (onay == DialogResult.Yes)
-            {
-                String sql = "DELETE FROM uyebilgileri WHERE id=@uyeno";
-                cmd = new MySqlCommand(sql, baglanti);
-                cmd.Parameters.AddWithValue("@uyeno", txtID.Text);
-                baglanti.Open();
-                cmd.ExecuteNonQuery();
-                baglanti.Close();
-                uyelerigetir();
-                temizle();
-            }
-            }
+                if(txtID.Text == "")
+                {
+                    MessageBox.Show("Kullanıcı seçilmeden silme işlemi yapılamaz.", "Kullanıcı Seçilmemiş",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                else
+                {
+                DialogResult onay = MessageBox.Show($@"ID'si {this.txtID.Text} olan  {this.txtAd.Text} {this.txtSoyad.Text} kalıcı olarak silinecek. Bu işlemi yapmak istediğine emin misin?", "Kalıcı Olarak Silinecek", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (onay == DialogResult.Yes)
+                {
+                    String sql = "DELETE FROM uyebilgileri WHERE id=@uyeno";
+                    cmd = new MySqlCommand(sql, baglanti);
+                    cmd.Parameters.AddWithValue("@uyeno", txtID.Text);
+                    baglanti.Open();
+                    cmd.ExecuteNonQuery();
+                    baglanti.Close();
+                    uyelerigetir();
+                    temizle();
+                }
+                }
 
             }
             catch (Exception ex)
